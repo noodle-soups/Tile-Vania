@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7079281850038784750}
   - component: {fileID: 5092036379635774478}
   - component: {fileID: 5310215147328361104}
+  - component: {fileID: 3562478608097123888}
+  - component: {fileID: 9200510174784173815}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -140,8 +142,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05051899, y: -0.06647223}
-  m_Size: {x: 0.5586252, y: 0.888327}
+  m_Offset: {x: -0.05051899, y: -0.018900752}
+  m_Size: {x: 0.73, y: 1.0378015}
   m_Direction: 0
 --- !u!50 &5310215147328361104
 Rigidbody2D:
@@ -170,3 +172,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3562478608097123888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336219970746923425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9c27d8e7d8e14584c958d0e2735b6254, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &9200510174784173815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336219970746923425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0722644894cde184192f862202d63c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

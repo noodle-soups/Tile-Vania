@@ -7717,18 +7717,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      propertyPath: m_Size.x
-      value: 0.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0378015
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.018900752
-      objectReference: {fileID: 0}
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.51
@@ -7772,46 +7760,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2278244925165939488}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
---- !u!1 &2278244925165939487 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-  m_PrefabInstance: {fileID: 2278244925165939486}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2278244925165939488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2278244925165939487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 9c27d8e7d8e14584c958d0e2735b6254, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
