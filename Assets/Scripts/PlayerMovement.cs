@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D myCapsuleCollider;
 
     bool isIdle = true;
-
     bool isClimbing = false;
 
     void Start()
@@ -35,18 +34,32 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Animations();
+        Idle();
         Run();
         FlipSprite();
         ClimbLadder();
 
+        Debug.Log("Move Input: " + moveInput);
         Debug.Log("isIdle: " + isIdle);
         Debug.Log("isClimbing: " + isClimbing);
-        Debug.Log(moveInput.y);
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    void Idle()
+    {
+        if (moveInput != new Vector2(0f, 0f))
+        {
+            isIdle = false;
+        }
+        else
+        {
+            isIdle = true;
+        }
     }
 
     void Run()
@@ -71,9 +84,6 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        // animation
-        anim.SetBool("isClimbing", isClimbing);
-        
         // default gravity status
         rb.gravityScale = gravityDefault;
 
@@ -101,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = climbVelocity;
             rb.gravityScale = 0f;
         }
-
     }
 
     void FlipSprite()
@@ -112,6 +121,12 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
         }
+    }
+
+    void Animations()
+    {
+        anim.SetBool("isIdle", isIdle);
+        anim.SetBool("isClimbing", isClimbing);
     }
 
 }

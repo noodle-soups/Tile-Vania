@@ -8619,6 +8619,10 @@ PrefabInstance:
       propertyPath: jumpSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 9200510174784173815, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: climbSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
