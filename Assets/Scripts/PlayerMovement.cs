@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 10f;
-    [SerializeField] float climbSpeed = 5f;
+    [SerializeField] float climbSpeed = 3f;
     float gravityDefault;
 
 
@@ -20,8 +21,9 @@ public class PlayerMovement : MonoBehaviour
     Animator anim;
     CapsuleCollider2D myCapsuleCollider;
 
-    bool ladderLatch = false;
+    bool isIdle = true;
 
+    bool isClimbing = false;
 
     void Start()
     {
@@ -36,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
         ClimbLadder();
+
+        Debug.Log("isIdle: " + isIdle);
+        Debug.Log("isClimbing: " + isClimbing);
+        Debug.Log(moveInput.y);
     }
 
     void OnMove(InputValue value)
@@ -54,10 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        //string jumpLayers = "Ground";
-
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {return;}
-        //if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask(jumpLayers))) {return;}
+        string jumpLayers = "Ground";
+        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask(jumpLayers))) {return;}
 
         if (value.isPressed)
         {
@@ -67,31 +71,44 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
+        // animation
+        anim.SetBool("isClimbing", isClimbing);
+        
+        // default gravity status
         rb.gravityScale = gravityDefault;
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {return;}
 
+        // exit
+        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        {
+            isClimbing = false;
+            return;
+        }
+
+        // isClimbing = ladderTouch + ladderLatch
         bool ladderTouch = false;
-        bool upPress = false;
-
+        bool ladderLatch = false;
         if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {ladderTouch = true;}
-        if (moveInput.y > Mathf.Epsilon) {upPress = true;}
-        if (ladderTouch && upPress) {ladderLatch = true;}
+        if (moveInput.y > Mathf.Epsilon) {ladderLatch = true;}
+        if (ladderTouch && ladderLatch) {isClimbing = true;}
 
-        if ((ladderLatch && moveInput.y < 0) || (!ladderTouch)) {ladderLatch = false;}
+        // player slides down or exits ladder
+        if ((isClimbing && moveInput.y < 0) || (!ladderTouch)) {isClimbing = false;}
 
-        if (ladderLatch)
+        // allow y-velocity while isClimbing
+        if (isClimbing)
         {
             Vector2 climbVelocity = new Vector2(rb.velocity.x, moveInput.y * climbSpeed);
             rb.velocity = climbVelocity;
             rb.gravityScale = 0f;
         }
+
     }
 
     void FlipSprite()
     {
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon; // true when player is moving R/L
+        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
 
-        if (playerHasHorizontalSpeed) // only flip when moving
+        if (playerHasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
         }
