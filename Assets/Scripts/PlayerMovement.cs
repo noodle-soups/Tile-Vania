@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float swimSpeed = 3f;
+    
+    Color colorDefault = new Color(1f, 1f, 1f, 1f);
     Color colorSwimming = new Color(0.5f, 0.7f, 1f, 1f);
     float gravityDefault;
 
@@ -143,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isSwimming = false;
+            mySpriteRenderer.color = colorDefault;
         }
 
         if (isSwimming)
