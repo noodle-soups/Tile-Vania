@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float climbSpeed = 3f;
+    [SerializeField] float speedSwim = 3f;
     float gravityDefault;
 
     Rigidbody2D rb;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     bool isRunning = false;
     bool isGrounded = false;
     bool isClimbing = false;
+    bool isSwimming = false;
 
     void Start()
     {
@@ -42,11 +44,17 @@ public class PlayerMovement : MonoBehaviour
         Animations();
         FlipSprite();
 
+        Swimming();
+        CheckStates();
+
         Debug.Log("Move Input: " + moveInput);
-        Debug.Log("isIdle: " + isIdle);
-        Debug.Log("isRunning: " + isRunning);
-        Debug.Log("isGrounded: " + isGrounded);
+        Debug.Log("Gravity Scale: " + rb.gravityScale);
+        
+        //Debug.Log("isIdle: " + isIdle);
+        //Debug.Log("isRunning: " + isRunning);
+        //Debug.Log("isGrounded: " + isGrounded);
         Debug.Log("isClimbing: " + isClimbing);
+        Debug.Log("isSwimming: " + isSwimming);
     }
 
     void OnMove(InputValue value)
@@ -94,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     void ClimbLadder()
     {
         // default gravity status
-        rb.gravityScale = gravityDefault;
+        //rb.gravityScale = gravityDefault;
 
         // exit
         if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
@@ -118,9 +126,39 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 climbVelocity = new Vector2(rb.velocity.x, moveInput.y * climbSpeed);
             rb.velocity = climbVelocity;
-            rb.gravityScale = 0f;
+            //rb.gravityScale = 0f;
         }
     }
+
+
+    void Swimming()
+    {
+        if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            isSwimming = true;
+        }
+        else
+        {
+            isSwimming = false;
+            
+        }
+
+        if (isSwimming)
+        {
+            Vector2 swimVelocity = new Vector2(moveInput.x * speedSwim, moveInput.y * speedSwim);
+            rb.velocity = swimVelocity;
+        }
+    }
+
+    void CheckStates()
+    {
+        if (isClimbing || isSwimming)
+        {
+            rb.gravityScale = 0f;
+        }
+        else {rb.gravityScale = gravityDefault;}
+    }
+
 
     void FlipSprite()
     {
