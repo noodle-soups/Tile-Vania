@@ -5,16 +5,20 @@ using Unity.VisualScripting;
 
 //using System.Numerics;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     Vector2 moveInput;
+
+    float inputJumpTEST;
+
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float climbSpeed = 3f;
-    [SerializeField] float speedSwim = 3f;
+    //[SerializeField] float speedSwim = 3f;
     float gravityDefault;
     Color colorSwimming = new Color(0.5f, 0.7f, 1f, 1f);
 
@@ -50,14 +54,17 @@ public class PlayerMovement : MonoBehaviour
         Swimming();
         CheckStates();
 
-        Debug.Log("Move Input: " + moveInput);
-        Debug.Log("Gravity Scale: " + rb.gravityScale);
-        
+        Debug.Log("Input Move: " + moveInput);
+
+        Debug.Log("Input Jump TEST: " + inputJumpTEST);
+
+        //Debug.Log("Input Jump Value: " + inputJumpValue);
+        //Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
         //Debug.Log("isRunning: " + isRunning);
         //Debug.Log("isGrounded: " + isGrounded);
-        Debug.Log("isClimbing: " + isClimbing);
-        Debug.Log("isSwimming: " + isSwimming);
+        //Debug.Log("isClimbing: " + isClimbing);
+        //Debug.Log("isSwimming: " + isSwimming);
     }
 
     void OnMove(InputValue value)
@@ -69,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isGrounded) {return;}
         if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
+    }
+
+    void OnJumpTest(InputValue value)
+    {
+        inputJumpTEST = value.Get<float>();
     }
 
     void Idle()
@@ -104,9 +116,6 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        // default gravity status
-        //rb.gravityScale = gravityDefault;
-
         // exit
         if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
@@ -129,7 +138,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 climbVelocity = new Vector2(rb.velocity.x, moveInput.y * climbSpeed);
             rb.velocity = climbVelocity;
-            //rb.gravityScale = 0f;
         }
     }
 
@@ -146,22 +154,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (isSwimming)
         {
-            Vector2 swimVelocity = new Vector2(moveInput.x * speedSwim, moveInput.y * speedSwim);
-            rb.velocity = swimVelocity;
-
-            mySpriteRenderer.color = colorSwimming;
+            //Vector2 swimVelocity = new Vector2(moveInput.x * speedSwim, 0f);
+            //rb.velocity = swimVelocity;
+            mySpriteRenderer.color = colorSwimming;          
         }
     }
 
     void CheckStates()
     {
-        if (isClimbing || isSwimming)
-        {
-            rb.gravityScale = 0f;
-        }
-        else {rb.gravityScale = gravityDefault;}
+        // gravity applications
+        if (isClimbing){rb.gravityScale = 0f;}
+        //else if (isSwimming) {rb.gravityScale = gravityDefault * 1f;}
+        else rb.gravityScale = gravityDefault;
     }
-
 
     void FlipSprite()
     {
