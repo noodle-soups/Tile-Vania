@@ -16,12 +16,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 3f;
     float gravityDefault;
 
-
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D myCapsuleCollider;
 
     bool isIdle = true;
+    bool isRunning = false;
+    bool isGrounded = false;
     bool isClimbing = false;
 
     void Start()
@@ -34,20 +35,29 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Animations();
         Idle();
         Run();
-        FlipSprite();
+        Grounded();
         ClimbLadder();
+        Animations();
+        FlipSprite();
 
         Debug.Log("Move Input: " + moveInput);
         Debug.Log("isIdle: " + isIdle);
+        Debug.Log("isRunning: " + isRunning);
+        Debug.Log("isGrounded: " + isGrounded);
         Debug.Log("isClimbing: " + isClimbing);
     }
 
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    void OnJump(InputValue value)
+    {
+        if (!isGrounded) {return;}
+        if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
     }
 
     void Idle()
@@ -66,19 +76,18 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
-
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon; // true when player is moving R/L
-        anim.SetBool("isRunning", playerHasHorizontalSpeed);
+        isRunning = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
     }
 
-    void OnJump(InputValue value)
+    void Grounded()
     {
-        string jumpLayers = "Ground";
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask(jumpLayers))) {return;}
-
-        if (value.isPressed)
+        if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
-            rb.velocity += new Vector2 (0f, jumpSpeed);
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
         }
     }
 
@@ -126,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
     void Animations()
     {
         anim.SetBool("isIdle", isIdle);
+        anim.SetBool("isRunning", isRunning);
         anim.SetBool("isClimbing", isClimbing);
     }
 
