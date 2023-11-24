@@ -10,23 +10,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Inputs")]
+    Vector2 inputMove;
 
-    Vector2 moveInput;
-
-    float inputJumpTEST;
-
+    [Header("Values")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float climbSpeed = 3f;
-    //[SerializeField] float speedSwim = 3f;
-    float gravityDefault;
+    [SerializeField] float swimSpeed = 3f;
     Color colorSwimming = new Color(0.5f, 0.7f, 1f, 1f);
+    float gravityDefault;
 
+    [Header("Components")]
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D myCapsuleCollider;
     SpriteRenderer mySpriteRenderer;
 
+    [Header("States")]
     bool isIdle = true;
     bool isRunning = false;
     bool isGrounded = false;
@@ -48,28 +49,24 @@ public class PlayerMovement : MonoBehaviour
         Run();
         Grounded();
         ClimbLadder();
+        Swimming();
         Animations();
         FlipSprite();
+        GravityApplication();
 
-        Swimming();
-        CheckStates();
-
-        Debug.Log("Input Move: " + moveInput);
-
-        Debug.Log("Input Jump TEST: " + inputJumpTEST);
-
-        //Debug.Log("Input Jump Value: " + inputJumpValue);
-        //Debug.Log("Gravity: " + rb.gravityScale);
+        //Debug.Log("Input Move: " + inputMove);
+        Debug.Log("RB Velocity: " + rb.velocity);
+        Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
         //Debug.Log("isRunning: " + isRunning);
-        //Debug.Log("isGrounded: " + isGrounded);
+        Debug.Log("isGrounded: " + isGrounded);
         //Debug.Log("isClimbing: " + isClimbing);
-        //Debug.Log("isSwimming: " + isSwimming);
+        Debug.Log("isSwimming: " + isSwimming);
     }
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        inputMove = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
@@ -78,14 +75,9 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
     }
 
-    void OnJumpTest(InputValue value)
-    {
-        inputJumpTEST = value.Get<float>();
-    }
-
     void Idle()
     {
-        if (moveInput != new Vector2(0f, 0f))
+        if (inputMove != new Vector2(0f, 0f))
         {
             isIdle = false;
         }
@@ -97,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Run()
     {
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        Vector2 playerVelocity = new Vector2(inputMove.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
         isRunning = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
     }
@@ -127,16 +119,17 @@ public class PlayerMovement : MonoBehaviour
         bool ladderTouch = false;
         bool ladderLatch = false;
         if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {ladderTouch = true;}
-        if (moveInput.y > Mathf.Epsilon) {ladderLatch = true;}
+        if (inputMove.y > Mathf.Epsilon) {ladderLatch = true;}
         if (ladderTouch && ladderLatch) {isClimbing = true;}
 
         // player slides down or exits ladder
-        if ((isClimbing && moveInput.y < 0) || (!ladderTouch)) {isClimbing = false;}
+        if ((isClimbing && inputMove.y < 0) || (!ladderTouch)) {isClimbing = false;}
 
         // allow y-velocity while isClimbing
         if (isClimbing)
         {
-            Vector2 climbVelocity = new Vector2(rb.velocity.x, moveInput.y * climbSpeed);
+            rb.gravityScale = 0f;
+            Vector2 climbVelocity = new Vector2(rb.velocity.x, inputMove.y * climbSpeed);
             rb.velocity = climbVelocity;
         }
     }
@@ -154,18 +147,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (isSwimming)
         {
-            //Vector2 swimVelocity = new Vector2(moveInput.x * speedSwim, 0f);
-            //rb.velocity = swimVelocity;
+            Vector2 swimVelocity = new Vector2(inputMove.x * swimSpeed, inputMove.y * swimSpeed);
+            rb.velocity = swimVelocity;
             mySpriteRenderer.color = colorSwimming;          
         }
     }
 
-    void CheckStates()
+    void GravityApplication()
     {
-        // gravity applications
-        if (isClimbing){rb.gravityScale = 0f;}
-        //else if (isSwimming) {rb.gravityScale = gravityDefault * 1f;}
-        else rb.gravityScale = gravityDefault;
+        if (isClimbing || isSwimming)
+        {
+            rb.gravityScale = 0f;
+        }
+        else
+        {
+            rb.gravityScale = gravityDefault;
+        }
     }
 
     void FlipSprite()
