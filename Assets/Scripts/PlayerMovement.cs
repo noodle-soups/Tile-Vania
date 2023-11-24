@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Inputs")]
     Vector2 inputMove;
+    Vector2 lookInput;
 
     [Header("Values")]
     [SerializeField] float moveSpeed = 5f;
@@ -57,13 +58,14 @@ public class PlayerMovement : MonoBehaviour
         GravityApplication();
 
         //Debug.Log("Input Move: " + inputMove);
-        Debug.Log("RB Velocity: " + rb.velocity);
-        Debug.Log("Gravity: " + rb.gravityScale);
+        Debug.Log("Look Input: " + lookInput);
+        //Debug.Log("RB Velocity: " + rb.velocity);
+        //Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
         //Debug.Log("isRunning: " + isRunning);
         Debug.Log("isGrounded: " + isGrounded);
         //Debug.Log("isClimbing: " + isClimbing);
-        Debug.Log("isSwimming: " + isSwimming);
+        //Debug.Log("isSwimming: " + isSwimming);
     }
 
     void OnMove(InputValue value)
@@ -183,6 +185,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isIdle", isIdle);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isClimbing", isClimbing);
+    }
+
+    void OnLookDirection(InputValue value)
+    {
+        lookInput = value.Get<Vector2>();
     }
 
 }
