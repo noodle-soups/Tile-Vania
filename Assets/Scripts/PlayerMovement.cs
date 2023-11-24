@@ -16,10 +16,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float speedSwim = 3f;
     float gravityDefault;
+    Color colorSwimming = new Color(0.5f, 0.7f, 1f, 1f);
 
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D myCapsuleCollider;
+    SpriteRenderer mySpriteRenderer;
 
     bool isIdle = true;
     bool isRunning = false;
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
         gravityDefault = rb.gravityScale;
     }
 
@@ -130,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     void Swimming()
     {
         if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
@@ -140,13 +142,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isSwimming = false;
-            
         }
 
         if (isSwimming)
         {
             Vector2 swimVelocity = new Vector2(moveInput.x * speedSwim, moveInput.y * speedSwim);
             rb.velocity = swimVelocity;
+
+            mySpriteRenderer.color = colorSwimming;
         }
     }
 

@@ -8676,6 +8676,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1228325063933620882, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228325063933620882, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228325063933620882, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8698,11 +8710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6
+      value: -7.69
       objectReference: {fileID: 0}
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.79
+      value: -0.83
       objectReference: {fileID: 0}
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalPosition.z
