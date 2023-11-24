@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Values")]
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float jumpSpeed = 10f;
+    [SerializeField] float jumpSpeed = 11f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float swimSpeed = 3f;
     
