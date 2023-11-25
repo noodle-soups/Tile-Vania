@@ -6,7 +6,7 @@ public class CheckTouching : MonoBehaviour
 {
 
     BoxCollider2D myColliderFeet;
-    public bool feetGrounded = false;
+    public bool feetGrounded;
 
     void Start()
     {

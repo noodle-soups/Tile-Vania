@@ -17,10 +17,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 11f;
     [SerializeField] float climbSpeed = 3f;
     [SerializeField] float swimSpeed = 3f;
+    float gravityDefault;
     
+    [Header("Colors")]
     Color colorDefault = new Color(1f, 1f, 1f, 1f);
     Color colorSwimming = new Color(0.5f, 0.7f, 1f, 1f);
-    float gravityDefault;
 
     [Header("Components")]
     Rigidbody2D rb;
@@ -35,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
     bool isClimbing = false;
     bool isSwimming = false;
 
-    //GameObject playerFeet;
-    CheckTouching checkTouching;
+    [Header("CheckTouching")]
+    GameObject playerFeet;
+    GameObject playerHead;
+    CheckTouching checkFeetTouching;
 
 
     void Start()
@@ -45,10 +48,11 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         myColliderBody = GetComponent<CapsuleCollider2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-
-        checkTouching = GetComponentInChildren<CheckTouching>();
         
         gravityDefault = rb.gravityScale;
+
+        playerFeet = transform.Find("Feet").gameObject;
+        checkFeetTouching = playerFeet.GetComponent<CheckTouching>();
     }
 
     void Update()
@@ -70,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("isGrounded: " + isGrounded);
         //Debug.Log("isClimbing: " + isClimbing);
         //Debug.Log("isSwimming: " + isSwimming);
+        Debug.Log(playerFeet.name);
     }
 
     void OnMove(InputValue value)
@@ -104,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Grounded()
     {
-        isGrounded = checkTouching.feetGrounded;
+        isGrounded = checkFeetTouching.feetGrounded;
     }
 
     void ClimbLadder()
