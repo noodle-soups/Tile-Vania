@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-//using System.Numerics;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D myColliderBody;
-    BoxCollider2D myColliderFeet;
     SpriteRenderer mySpriteRenderer;
 
     [Header("States")]
@@ -37,13 +35,19 @@ public class PlayerMovement : MonoBehaviour
     bool isClimbing = false;
     bool isSwimming = false;
 
+    //GameObject playerFeet;
+    CheckTouching checkTouching;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         myColliderBody = GetComponent<CapsuleCollider2D>();
-        myColliderFeet = GetComponent<BoxCollider2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+
+        checkTouching = GetComponentInChildren<CheckTouching>();
+        
         gravityDefault = rb.gravityScale;
     }
 
@@ -100,14 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Grounded()
     {
-        if (myColliderFeet.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        isGrounded = checkTouching.feetGrounded;
     }
 
     void ClimbLadder()
