@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Inputs")]
     Vector2 inputMove;
-    Vector2 lookInput;
 
     [Header("Values")]
     [SerializeField] float moveSpeed = 5f;
@@ -27,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     Rigidbody2D rb;
     Animator anim;
-    CapsuleCollider2D myCapsuleCollider;
+    CapsuleCollider2D myColliderBody;
+    BoxCollider2D myColliderFeet;
     SpriteRenderer mySpriteRenderer;
 
     [Header("States")]
@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        myColliderBody = GetComponent<CapsuleCollider2D>();
+        myColliderFeet = GetComponent<BoxCollider2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         gravityDefault = rb.gravityScale;
     }
@@ -58,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
         GravityApplication();
 
         //Debug.Log("Input Move: " + inputMove);
-        Debug.Log("Look Input: " + lookInput);
         //Debug.Log("RB Velocity: " + rb.velocity);
         //Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Grounded()
     {
-        if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (myColliderFeet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
         }
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
     void ClimbLadder()
     {
         // exit
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        if (!myColliderBody.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
             isClimbing = false;
             return;
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         // isClimbing = ladderTouch + ladderLatch
         bool ladderTouch = false;
         bool ladderLatch = false;
-        if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {ladderTouch = true;}
+        if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {ladderTouch = true;}
         if (inputMove.y > Mathf.Epsilon) {ladderLatch = true;}
         if (ladderTouch && ladderLatch) {isClimbing = true;}
 
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Swimming()
     {
-        if (myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
+        if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Water")))
         {
             isSwimming = true;
         }
@@ -185,11 +185,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isIdle", isIdle);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isClimbing", isClimbing);
-    }
-
-    void OnLookDirection(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
     }
 
 }
