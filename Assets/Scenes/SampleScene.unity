@@ -23460,25 +23460,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 885807807931764814, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 1228325063933620882, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 66c32ec536cce5d4d89bd64a0e6be3c7, type: 3}
     - target: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Size.y
-      value: 0.90098107
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Offset.y
-      value: -0.059509456
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23519,6 +23519,14 @@ PrefabInstance:
     - target: {fileID: 6385910207181954473, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952295465617598341, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.y
+      value: -43.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676195183586182116, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.y
+      value: -25.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
