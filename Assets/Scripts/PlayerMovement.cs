@@ -66,15 +66,18 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         GravityApplication();
 
+        TestNewMethod();
+
         //Debug.Log("Input Move: " + inputMove);
         //Debug.Log("RB Velocity: " + rb.velocity);
         //Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
         //Debug.Log("isRunning: " + isRunning);
-        Debug.Log("isGrounded: " + isGrounded);
+        //Debug.Log("isGrounded: " + isGrounded);
         //Debug.Log("isClimbing: " + isClimbing);
         //Debug.Log("isSwimming: " + isSwimming);
-        Debug.Log(playerFeet.name);
+        //Debug.Log(playerFeet.name);
+        //Debug.Log("Jump Speed: " + jumpSpeed);
     }
 
     void OnMove(InputValue value)
@@ -187,6 +190,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isIdle", isIdle);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isClimbing", isClimbing);
+    }
+
+    void TestNewMethod()
+    {
+        print("Faster?");
     }
 
 }
