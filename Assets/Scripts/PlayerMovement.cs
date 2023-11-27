@@ -13,10 +13,10 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputMove;
 
     [Header("Values")]
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float jumpSpeed = 11f;
-    [SerializeField] float climbSpeed = 3f;
-    [SerializeField] float swimSpeed = 3f;
+    float moveSpeed = 5f;
+    float jumpSpeed = 11f;
+    float climbSpeed = 3f;
+    float swimSpeed = 3f;
     float gravityDefault;
     
     [Header("Colors")]
@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
     bool isClimbing = false;
     bool isSwimming = false;
+    bool isJumpFall = false;
 
     [Header("CheckTouching")]
     GameObject playerFeet;
@@ -66,10 +67,10 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         GravityApplication();
 
-        TestNewMethod();
+        Falling();
 
         //Debug.Log("Input Move: " + inputMove);
-        //Debug.Log("RB Velocity: " + rb.velocity);
+        Debug.Log("RB Velocity?: " + rb.velocity);
         //Debug.Log("Gravity: " + rb.gravityScale);
         //Debug.Log("isIdle: " + isIdle);
         //Debug.Log("isRunning: " + isRunning);
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("isSwimming: " + isSwimming);
         //Debug.Log(playerFeet.name);
         //Debug.Log("Jump Speed: " + jumpSpeed);
+        Debug.Log("Falling: " + isJumpFall);
     }
 
     void OnMove(InputValue value)
@@ -88,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue value)
     {
         if (!isGrounded) {return;}
-        if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
+        //if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
+        if (value.isPressed) {rb.velocity += new Vector2 (0f, 12f);}
     }
 
     void Idle()
@@ -190,11 +193,20 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isIdle", isIdle);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isClimbing", isClimbing);
+        anim.SetBool("isJumpFall", isJumpFall);
     }
 
-    void TestNewMethod()
+    void Falling()
     {
-        print("New message");
+                
+        if (rb.velocity.y < 0)
+        {
+            isJumpFall = true;
+        }
+        else
+        {
+            isJumpFall = false;
+        }
     }
 
 }
