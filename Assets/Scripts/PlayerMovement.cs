@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
     void TestNewMethod()
     {
-        print("Faster?");
+        print("New message");
     }
 
 }
