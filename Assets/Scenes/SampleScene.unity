@@ -23630,9 +23630,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1228325063933620882, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 357ecebb32d104c4583da1cd16b365c1, type: 2}
     - target: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6251817
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8726857
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0360291
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.043657184
       objectReference: {fileID: 0}
     - target: {fileID: 5310215147328361104, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_GravityScale
@@ -23678,10 +23698,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6952295465617598341, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079281850038784750, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f5ac4d7354a9bac4d8c9dc5b9395221c, type: 2}
     - target: {fileID: 7676195183586182116, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 7732cb60e312a9145b89c75ec4a63d2b, type: 2}
+    - target: {fileID: 7676195183586182116, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
