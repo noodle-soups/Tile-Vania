@@ -28,7 +28,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Controller-Pink-Blob
+  m_Name: Anim-Controller-Pink-Blob
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -51,7 +51,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy-1-Idle
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8934525f43e8b3f4d9704cec5b1b98ef, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8c876f896702a144b915f62993cd0d74, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
