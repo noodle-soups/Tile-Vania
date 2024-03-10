@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     bool isClimbing = false;
     bool isSwimming = false;
     bool isJumpFall = false;
+    bool isAlive = true;
 
     [Header("CheckTouching")]
     GameObject playerFeet;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(!isAlive) {return;}
         Idle();
         Run();
         Grounded();
@@ -69,26 +71,22 @@ public class PlayerMovement : MonoBehaviour
 
         Falling();
 
-        //Debug.Log("Input Move: " + inputMove);
+        Die();
+
+
         Debug.Log("RB Velocity?: " + rb.velocity);
-        //Debug.Log("Gravity: " + rb.gravityScale);
-        //Debug.Log("isIdle: " + isIdle);
-        //Debug.Log("isRunning: " + isRunning);
-        //Debug.Log("isGrounded: " + isGrounded);
-        //Debug.Log("isClimbing: " + isClimbing);
-        //Debug.Log("isSwimming: " + isSwimming);
-        //Debug.Log(playerFeet.name);
-        //Debug.Log("Jump Speed: " + jumpSpeed);
         Debug.Log("Falling: " + isJumpFall);
     }
 
     void OnMove(InputValue value)
     {
+        if(!isAlive) {return;}
         inputMove = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
+        if(!isAlive) {return;}
         if (!isGrounded) {return;}
         //if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
         if (value.isPressed) {rb.velocity += new Vector2 (0f, 12f);}
@@ -206,6 +204,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isJumpFall = false;
+        }
+    }
+
+    void Die()
+    {
+        if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
         }
     }
 
