@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputMove;
 
     [Header("Values")]
-    float moveSpeed = 10f;
+    float moveSpeed = 5f;
     float jumpSpeed = 11f;
     float climbSpeed = 3f;
     float swimSpeed = 3f;
