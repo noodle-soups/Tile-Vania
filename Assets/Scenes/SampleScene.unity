@@ -21336,13 +21336,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3336219970746923425, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473233817166448169, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4075246470992864346, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Size.x
       value: 0.6251817
       objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Size.y
-      value: 0.8726857
+      value: 0.8826833
       objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Offset.x
@@ -21350,7 +21362,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_Offset.y
-      value: -0.043657184
+      value: -0.048655987
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092036379635774478, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5310215147328361104, guid: 77c5f35d8e5c2164b92e42816e1bda67, type: 3}
       propertyPath: m_GravityScale
