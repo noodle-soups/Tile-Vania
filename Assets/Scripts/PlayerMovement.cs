@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float climbSpeed = 3f;
     float swimSpeed = 3f;
     float gravityDefault;
+    Vector2 deathKick = new Vector2 (-5f, 0f);
     
     [Header("Colors")]
     Color colorDefault = new Color(1f, 1f, 1f, 1f);
@@ -68,14 +69,10 @@ public class PlayerMovement : MonoBehaviour
         Animations();
         FlipSprite();
         GravityApplication();
-
         Falling();
-
         Die();
 
-
         Debug.Log("RB Velocity?: " + rb.velocity);
-        Debug.Log("Falling: " + isJumpFall);
     }
 
     void OnMove(InputValue value)
@@ -212,6 +209,13 @@ public class PlayerMovement : MonoBehaviour
         if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
         {
             isAlive = false;
+            anim.SetTrigger("Death");
+            //rb.velocity = deathKick;
+            int DeathStateLayer = LayerMask.NameToLayer("Death State");
+            gameObject.layer = DeathStateLayer;
+            transform.Find("Feet").gameObject.layer = DeathStateLayer;
+            transform.Find("Head").gameObject.layer = DeathStateLayer;
+            
         }
     }
 
