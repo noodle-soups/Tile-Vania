@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     GameObject playerHead;
     CheckTouching checkFeetTouching;
 
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform bulletSpawn;
+
 
     void Start()
     {
@@ -217,6 +220,12 @@ public class PlayerMovement : MonoBehaviour
             transform.Find("Feet").gameObject.layer = DeathStateLayer;
             transform.Find("Head").gameObject.layer = DeathStateLayer;
         }
+    }
+
+    void OnFire(InputValue value)
+    {
+        if (!isAlive) {return;}
+        Instantiate(bullet, bulletSpawn.position, transform.rotation);
     }
 
 }
