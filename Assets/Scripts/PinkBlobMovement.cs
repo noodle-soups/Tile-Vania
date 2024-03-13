@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PinkBlobMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 1f;
+    //float moveSpeed = 1f;
+    float moveSpeed;
+    float directionFacing;
     Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        directionFacing = transform.localScale.x;
+        moveSpeed = 1f * directionFacing;
     }
 
 
