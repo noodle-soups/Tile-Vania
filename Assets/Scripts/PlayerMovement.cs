@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if(!isAlive) {return;}
         if (!isGrounded) {return;}
         //if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
-        if (value.isPressed) {rb.velocity += new Vector2 (0f, 12f);}
+        if (value.isPressed) {rb.velocity += new Vector2 (0f, 10f);}
     }
 
     void Idle()
