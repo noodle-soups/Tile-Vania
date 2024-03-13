@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
     }
 
     //what happens when bullet collides with enemy
+    //change this to be a collision instead of trigger?
     void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.tag == "Enemy")
