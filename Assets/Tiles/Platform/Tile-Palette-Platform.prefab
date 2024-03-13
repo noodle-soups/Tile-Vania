@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2148393201751855534}
   - component: {fileID: 6704516761332122120}
   m_Layer: 0
-  m_Name: Platforms
+  m_Name: Tile-Palette-Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -843,7 +843,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &690464098612313900
+--- !u!114 &4689976265622867696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

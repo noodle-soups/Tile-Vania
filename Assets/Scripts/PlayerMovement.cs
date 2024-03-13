@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
+        if (myColliderBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Spike")))
         //or if feet/head touch enemy
         {
             isAlive = false;
