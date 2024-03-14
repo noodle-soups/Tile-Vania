@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Values")]
     float moveSpeed = 5f;
-    //float jumpSpeed = 11f;
+    float jumpSpeed = 13f;
     float climbSpeed = 3f;
     float swimSpeed = 3f;
     float gravityDefault;
@@ -88,8 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isAlive) {return;}
         if (!isGrounded) {return;}
-        //if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
-        if (value.isPressed) {rb.velocity += new Vector2 (0f, 10f);}
+        if (value.isPressed) {rb.velocity += new Vector2 (0f, jumpSpeed);}
     }
 
     void Idle()
