@@ -21,7 +21,7 @@ TagManager:
   - Death State
   - Spike
   - Bullet
-  - 
+  - Interactions
   - 
   - 
   - 
@@ -56,6 +56,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 3265942373
+    locked: 0
+  - name: Interactions
+    uniqueID: 3609756717
     locked: 0
   - name: Enemy
     uniqueID: 693260295
