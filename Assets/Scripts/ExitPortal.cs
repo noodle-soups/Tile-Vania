@@ -23,8 +23,17 @@ public class ExitPortal : MonoBehaviour
         // get current scene index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        // get next scene index
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // if no more levels, return to first
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+
         // load next scene
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
 }
