@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,10 @@ public class GameSession : MonoBehaviour
 {
 
     [SerializeField] int playerLives = 3;
+    [SerializeField] int playerCurrency = 0;
+
+    [SerializeField] TextMeshProUGUI livesText;
+    [SerializeField] TextMeshProUGUI currencyText;
 
     // ensure there is only ever 1 Game Session
     void Awake()
@@ -24,6 +29,22 @@ public class GameSession : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    void Start()
+    {
+        // set tmp to read playerLives
+        livesText.text = playerLives.ToString();
+        
+        // set tmp to read playerLives
+        currencyText.text = playerCurrency.ToString();
+    }
+
+    // add to player currency
+    public void CurrencyAdd(int currencyToAdd)
+    {
+        playerCurrency += currencyToAdd;
+        currencyText.text = playerCurrency.ToString();
     }
 
     // methods triggered upon death (TakeLife or ResetGameSession)
@@ -48,6 +69,12 @@ public class GameSession : MonoBehaviour
         // reload current scene
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+
+        // set tmp to read playerLives
+        livesText.text = playerLives.ToString();
+
+        playerCurrency = 0;
+        currencyText.text = playerCurrency.ToString();
     }
 
     // reload starting scene & destroy this game session
