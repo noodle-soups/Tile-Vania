@@ -75,13 +75,13 @@ public class PlayerMovement : MonoBehaviour
         Falling();
         Die();
 
-        Debug.Log("RB Velocity?: " + rb.velocity);
+        //Debug.Log("RB Velocity?: " + rb.velocity);
     }
 
     void OnMove(InputValue value)
     {
         if(!isAlive) {return;}
-        inputMove = value.Get<Vector2>();
+        inputMove = value.Get<Vector2>(); //* Time.deltaTime
     }
 
     void OnJump(InputValue value)
@@ -218,6 +218,9 @@ public class PlayerMovement : MonoBehaviour
             gameObject.layer = DeathStateLayer;
             transform.Find("Feet").gameObject.layer = DeathStateLayer;
             transform.Find("Head").gameObject.layer = DeathStateLayer;
+
+            // call ProcessPlayerDeath from GameSession script
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 

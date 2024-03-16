@@ -6,27 +6,27 @@ using UnityEngine.SceneManagement;
 public class ExitPortal : MonoBehaviour
 {
 
-    float levelLoadDelay = 3f;
+    float levelLoadDelay = 2f;
 
+    // if player triggers exit then load next scene
     void OnTriggerEnter2D(Collider2D other)
     {
-        // load next level after delay
-        StartCoroutine(LoadNextLevel());
+        if (other.tag == "Player")
+        {
+            // LoadNextLevel after delay
+            StartCoroutine(LoadNextLevel());
+        }
     }
 
-
+    // load next scene after delay
     IEnumerator LoadNextLevel()
     {
-        // wait for few seconds
+        // wait for a few seconds
         yield return new WaitForSecondsRealtime(levelLoadDelay);
 
-        // get current scene index
+        // compute next scene
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // get next scene index
         int nextSceneIndex = currentSceneIndex + 1;
-
-        // if no more levels, return to first
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
             nextSceneIndex = 0;

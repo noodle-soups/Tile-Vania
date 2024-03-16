@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3088059040291459951}
   - component: {fileID: 6971939826259203355}
   m_Layer: 11
-  m_Name: Enemy-Pink-Blob
+  m_Name: Enemy Pink Blob
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
