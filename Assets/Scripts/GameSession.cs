@@ -14,13 +14,24 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] TextMeshProUGUI currencyText;
 
-    // ensure there is only ever 1 Game Session
+
     void Awake()
     {
-        // how many Game-Session objects are there?
-        int numGameSessions = FindObjectsOfType<GameSession>().Length;
+        ManageGameSessionOnAwake();
+    }
 
-        // if > 1 then destroy
+
+    void Start()
+    {
+        UIDefaultValues();
+    }
+
+
+    #region Manage Game Session
+    // ensure there is only ever 1 Game Session
+    void ManageGameSessionOnAwake()
+    {
+        int numGameSessions = FindObjectsOfType<GameSession>().Length;
         if (numGameSessions > 1)
         {
             Destroy(gameObject);
@@ -31,59 +42,85 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    void Start()
+    // destroy current Game Session
+    void ResetGameSession()
     {
-        // set tmp to read playerLives
+        Destroy(gameObject);
+    }
+    #endregion
+
+
+    #region UI Default Values
+    // set default values for UI
+    void UIDefaultValues()
+    {
         livesText.text = playerLives.ToString();
-        
-        // set tmp to read playerLives
         currencyText.text = playerCurrency.ToString();
     }
+    #endregion
 
-    // add to player currency
-    public void CurrencyAdd(int currencyToAdd)
-    {
-        playerCurrency += currencyToAdd;
-        currencyText.text = playerCurrency.ToString();
-    }
 
-    // methods triggered upon death (TakeLife or ResetGameSession)
+    #region Player Death Events
+    // methods triggered upon death (see PlayerMovement.Die)
     public void ProcessPlayerDeath()
     {
+        ResetPlayerCurrency();
         if (playerLives > 1)
         {
-            TakeLife();
+            //TakeLife();
+            ChangePlayerLives(-1);
+            SceneLoadCurrent();
         }
         else
         {
             ResetGameSession();
+            SceneLoadFirst();
         }
     }
+    #endregion
 
-    // decrease lives by -1 & reload current scene
-    void TakeLife()
+
+    #region Player Lives
+    // change the player's lives
+    void ChangePlayerLives(int livesChangeValue)
     {
-        // decrease current number of lives by 1
-        playerLives--;
+        playerLives += livesChangeValue;
+        livesText.text = playerLives.ToString();
+    }
+    #endregion
 
-        // reload current scene
+
+    #region Scene Loads
+    // load first scene
+    void SceneLoadFirst()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    // load current scene
+    void SceneLoadCurrent()
+    {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+    #endregion
 
-        // set tmp to read playerLives
-        livesText.text = playerLives.ToString();
 
-        playerCurrency = 0;
+    #region Player Currency
+    // change the player's currency
+    public void ChangePlayerCurrency(int currencyValue)
+    {
+        // called inside CoinPickup script
+        playerCurrency += currencyValue;
         currencyText.text = playerCurrency.ToString();
     }
 
-    // reload starting scene & destroy this game session
-    void ResetGameSession()
+    // reset the player's currency
+    void ResetPlayerCurrency()
     {
-        // load first scene
-        SceneManager.LoadScene(0);
-
-        // destroy this game object
-        Destroy(gameObject);
+        playerCurrency = 0;
+        currencyText.text = playerCurrency.ToString();
     }
+    #endregion
+
 }

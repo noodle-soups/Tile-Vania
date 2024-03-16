@@ -13,7 +13,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            FindObjectOfType<GameSession>().CurrencyAdd(coinCurrencyValue);
+            FindObjectOfType<GameSession>().ChangePlayerCurrency(coinCurrencyValue);
             AudioSource.PlayClipAtPoint(coinPickupSFX, Camera.main.transform.position);
             Destroy(gameObject);
         }
