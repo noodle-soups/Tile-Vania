@@ -46,6 +46,7 @@ public class GameSession : MonoBehaviour
     void ResetGameSession()
     {
         Destroy(gameObject);
+        //FindObjectOfType<ScenePersist>().ResetScenePersist();
     }
     #endregion
 
@@ -67,7 +68,6 @@ public class GameSession : MonoBehaviour
         ResetPlayerCurrency();
         if (playerLives > 1)
         {
-            //TakeLife();
             ChangePlayerLives(-1);
             SceneLoadCurrent();
         }
