@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &147430214 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4163242457941240319, guid: 28bcafb42d8c7fd4dbc8e9169a7516a1, type: 3}
-  m_PrefabInstance: {fileID: 757926260475196863}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &193105915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4957384064786258116, guid: 7ffc67955881748429cd146662e2aefd, type: 3}
@@ -5179,13 +5174,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000373920}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1051773337}
-  m_Father: {fileID: 147430214}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1051773337 stripped
 Transform:
@@ -5499,7 +5494,7 @@ Transform:
   - {fileID: 193105915}
   - {fileID: 495285052}
   - {fileID: 215905073}
-  m_Father: {fileID: 147430214}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1774071931
 GameObject:
@@ -6714,13 +6709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4163242457941240319, guid: 28bcafb42d8c7fd4dbc8e9169a7516a1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1731661883}
-    - targetCorrespondingSourceObject: {fileID: 4163242457941240319, guid: 28bcafb42d8c7fd4dbc8e9169a7516a1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1000373921}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bcafb42d8c7fd4dbc8e9169a7516a1, type: 3}
 --- !u!1001 &2278244925165939486
@@ -6785,9 +6774,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 550471285}
+  - {fileID: 757926260475196863}
   - {fileID: 518507184473805581}
   - {fileID: 2033904676}
   - {fileID: 1857547890}
   - {fileID: 2278244925165939486}
   - {fileID: 892215724}
-  - {fileID: 757926260475196863}
+  - {fileID: 1731661883}
+  - {fileID: 1000373921}
